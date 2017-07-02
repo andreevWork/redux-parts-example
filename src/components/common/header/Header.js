@@ -11,7 +11,7 @@ export class Header extends PureComponent {
                 <Toolbar>
                     <Typography type="title" color="inherit">
                         <Link to="/">
-                            Redux parts - example
+                            Beer market
                         </Link>
                     </Typography>
                 </Toolbar>

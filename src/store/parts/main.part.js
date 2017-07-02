@@ -15,6 +15,6 @@ export const MainPart = {
     },
 
     complex_parts: {
-        beers_list: BeerListPart
+        beers: BeerListPart
     }
 };

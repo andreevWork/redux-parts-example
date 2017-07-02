@@ -3,8 +3,8 @@ import {beerApi} from "../api/beer.api";
 
 export const BeerListPart = {
     actions: {
-        loadData() {
-            return beerApi.loadBeers();
+        loadData(page_number) {
+            return beerApi.loadBeers(page_number);
         }
     },
 
