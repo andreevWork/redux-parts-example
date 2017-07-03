@@ -12,7 +12,7 @@ export class ListData extends PureComponent {
         }
 
         return <Grid container justify="space-around">
-            {data.map(item => <Grid className="list-item" md item key={item.id}>
+            {data.map(item => <Grid className="list-item" xs={2} item key={item.id}>
                 {this.props.children(item)}
             </Grid>)}
         </Grid>;
