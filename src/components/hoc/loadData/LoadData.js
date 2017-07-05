@@ -5,19 +5,21 @@ import { bindActionCreators } from 'redux';
 /**
  *
  * @param options:
- * - mapStateToProps - required - fn for mapping redux state to props, must return object with single "data" key
- * - loadAction - required - action which will be dispatch to store for start load data
- * - checkDataExist - required - function for check if data already was loaded. Takes data from mapStateToProps
+ * - stateToProps - required - fn for mapping redux state to props, must return object with single "data" key
+ * - loadDataAction - required - action which will be dispatch to store for start load data. Takes data from props
+ * - hasData - required - function for check if data already was loaded. Takes data from mapStateToProps
  * @returns {Function}
  */
 export function LoadData(options) {
-    const {mapStateToProps, loadAction, checkDataExist} = options;
+    const {stateToProps, loadDataAction, hasData} = options;
 
     return function (Component) {
         class LoadDataComponent extends PureComponent {
             componentDidMount() {
-                if (!checkDataExist(this.props.data)) {
-                    this.props.loadAction();
+                const has_data = hasData(this.props);
+
+                if (!has_data) {
+                    this.props.loadDataAction(this.props);
                 }
             }
 
@@ -30,16 +32,12 @@ export function LoadData(options) {
         }
 
         return connect(
-            mapStateToProps,
-            getActionsMap(loadAction)
+            (state) => ({data: stateToProps(state)}),
+            getLoadAction(loadDataAction)
         )(LoadDataComponent);
     };
 }
 
-function getActionsMap(loadAction) {
-    return function mapDispatchToProps(dispatch) {
-        return bindActionCreators({
-            loadAction: loadAction
-        }, dispatch);
-    }
+function getLoadAction(loadDataAction) {
+    return dispatch => bindActionCreators({loadDataAction}, dispatch);
 }

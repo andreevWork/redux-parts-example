@@ -20,7 +20,7 @@ export class ListData extends PureComponent {
 }
 
 ListData.propTypes = {
-    data: PropTypes.array.isRequired,
+    data: PropTypes.array,
     has_data: PropTypes.bool.isRequired,
     is_pending: PropTypes.bool.isRequired,
     children: PropTypes.func.isRequired

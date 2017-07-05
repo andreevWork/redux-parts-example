@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {ListLoader} from "./loader/ListLoader";
 import {EmptyList} from "./empty/EmptyList";
 import {ListData} from "./data/ListData";
+import './List.css';
 
 export class List extends PureComponent {
     hasData() {
@@ -14,7 +15,7 @@ export class List extends PureComponent {
         const {data, is_pending} = this.props.list;
         const has_data = this.hasData();
 
-        return <section>
+        return <section className="list">
             <ListLoader is_pending={is_pending} />
 
             <EmptyList has_data={has_data} is_pending={is_pending} />
@@ -28,7 +29,7 @@ export class List extends PureComponent {
 
 List.propTypes = {
     list: PropTypes.shape({
-        data: PropTypes.array.isRequired,
+        data: PropTypes.array,
         is_pending: PropTypes.bool.isRequired
     }).isRequired,
     children: PropTypes.func.isRequired

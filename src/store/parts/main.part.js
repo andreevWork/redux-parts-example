@@ -1,20 +1,9 @@
 import {BeerListPart} from "./beers.list.part";
+import {DetailsPart} from "./details.part.js";
 
 export const MainPart = {
-    initial_state: {
-        is_init: false
-    },
-
-    reducer: {
-        setInit(state) {
-            return {
-                ...state,
-                is_init: true
-            }
-        }
-    },
-
     complex_parts: {
-        beers: BeerListPart
+        beers: BeerListPart,
+        details: DetailsPart
     }
 };

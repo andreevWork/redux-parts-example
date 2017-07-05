@@ -1,22 +1,15 @@
 export const ListPart = {
     initial_state: {
-        is_pending: false,
         has_more: false,
         next_page: 1,
         items_count: 0,
-        pages_count: 0,
-        data: []
+        pages_count: 0
     },
 
     reducer: {
-        loadData_Pending(state) {
-            return {
-                ...state,
-                is_pending: true
-            }
-        },
         loadData_Success(state, {payload}) {
             const {totalResults, numberOfPages, data} = payload;
+            const old_data = state.data || [];
 
             return {
                 ...state,
@@ -25,7 +18,7 @@ export const ListPart = {
                 pages_count: numberOfPages,
                 next_page: state.next_page + 1,
                 has_more: state.next_page < numberOfPages,
-                data: state.data.concat(data)
+                data: old_data.concat(data)
             }
         }
     }

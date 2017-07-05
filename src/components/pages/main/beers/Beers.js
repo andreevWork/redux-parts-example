@@ -16,9 +16,12 @@ class BeersComponent extends PureComponent {
 }
 
 const options = {
-    mapStateToProps: ({beers}) => ({data: beers}),
-    loadAction: Actions.beers.loadData,
-    checkDataExist: ({data}) => data && data.length,
+    stateToProps: state => state.beers,
+    loadDataAction: () => Actions.beers.loadData(1),
+    hasData: (props) => {
+        const {data} = props;
+        return data.data && data.data.length;
+    },
 };
 
 export const Beers = LoadData(options)(BeersComponent);

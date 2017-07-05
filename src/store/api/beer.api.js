@@ -10,6 +10,14 @@ class BeerApi extends BaseApi {
 
         return this.request('/beers', query_params)
     }
+
+    loadBeerItem(beer_id) {
+        const query_params = {
+            withBreweries: 'Y'
+        };
+
+        return this.request(`/beer/${beer_id}`, query_params)
+    }
 }
 
 export const beerApi = new BeerApi();

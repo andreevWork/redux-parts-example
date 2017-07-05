@@ -15,7 +15,7 @@ export class App extends PureComponent {
                 <Header/>
                 <main className="content">
                     <Route exact path="/" component={MainPage}/>
-                    <Route exact path="/details/:id" component={DetailsPage}/>
+                    <Route exact path="/beer/:id" component={DetailsPage}/>
                 </main>
             </div>
         </Router>;
