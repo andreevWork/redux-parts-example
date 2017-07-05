@@ -1,14 +1,17 @@
 import React, { PureComponent } from 'react';
 import { Actions } from '../../../store/index';
 import {LoadData} from "../../hoc/loadData/LoadData";
+import {LoaderOrData} from "../../common/loaderOrData/LoaderOrData";
+import {BeerInfo} from "./BeerInfo/BeerInfo";
 
 
 class DetailsComponent extends PureComponent {
     render() {
-        const {data} = this.props.data;
-
-        return <div className="beers-list">
-            {data && data.name}
+        const {data, is_pending} = this.props.data;
+        return <div>
+            <LoaderOrData has_data={!!data}>
+                <BeerInfo beer={data} />
+            </LoaderOrData>
         </div>;
     }
 }
