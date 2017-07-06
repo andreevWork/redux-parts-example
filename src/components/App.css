@@ -12,4 +12,5 @@
     overflow-y: auto;
     overflow-x: hidden;
     padding-top: 20px;
+    flex: 2;
 }

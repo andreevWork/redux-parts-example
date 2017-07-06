@@ -30,7 +30,7 @@ export class BeerItem extends PureComponent {
                     <Typography className="beer-item-category" noWrap={true} type="subheading">
                         {category.name}
                     </Typography>
-                    <Chip className="beer-item-abv" label={`${abv}%`} />
+                    {abv && <Chip className="beer-item-abv" label={`${abv}%`} />}
                 </div>
 
                 <Typography className="block-with-text"  color="secondary" component="p">
@@ -52,7 +52,7 @@ export class BeerItem extends PureComponent {
 
 BeerItem.propTypes = {
     beer: PropTypes.shape({
-        abv: PropTypes.string.isRequired,
+        abv: PropTypes.string,
         id: PropTypes.string.isRequired,
         nameDisplay: PropTypes.string.isRequired,
         description: PropTypes.string,

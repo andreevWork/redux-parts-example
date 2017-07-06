@@ -2,10 +2,11 @@ import {BaseApi} from "./base.api";
 
 class BeerApi extends BaseApi {
 
-    loadBeers(page_number = 1) {
+    loadBeers(page_number = 1, options = {}) {
         const query_params = {
             p: page_number,
-            availableId: 2
+            availableId: 2,
+            ...options
         };
 
         return this.request('/beers', query_params)

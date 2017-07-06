@@ -1,36 +1,21 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import {ListLoader} from "./loader/ListLoader";
-import {EmptyList} from "./empty/EmptyList";
-import {ListData} from "./data/ListData";
+import Grid from 'material-ui/Grid';
 import './List.css';
 
 export class List extends PureComponent {
-    hasData() {
-        const {data} = this.props.list;
-        return !!data && !!data.length;
-    }
-
     render() {
-        const {data, is_pending} = this.props.list;
-        const has_data = this.hasData();
+        const {data} = this.props;
 
-        return <section className="list">
-            <ListLoader is_pending={is_pending} />
-
-            <EmptyList has_data={has_data} is_pending={is_pending} />
-
-            <ListData has_data={has_data} is_pending={is_pending} data={data} >
-                {this.props.children}
-            </ListData>
-        </section>;
+        return <Grid className="hidden"     container justify="space-around">
+            {data.map(item => <Grid className="list-item" xs={2} item key={item.id}>
+                {this.props.children(item)}
+            </Grid>)}
+        </Grid>;
     }
 }
 
 List.propTypes = {
-    list: PropTypes.shape({
-        data: PropTypes.array,
-        is_pending: PropTypes.bool.isRequired
-    }).isRequired,
+    data: PropTypes.array,
     children: PropTypes.func.isRequired
 };

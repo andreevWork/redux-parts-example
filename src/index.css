@@ -16,3 +16,16 @@ a {
     top: 50%;
     transform: translate(-50%, -50%);
 }
+
+.hidden {
+    overflow: hidden;
+}
+
+.h300 {
+    height: 300px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.mh300 {
+    min-height: 300px;
+}

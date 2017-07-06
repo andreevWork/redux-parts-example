@@ -1,0 +1,11 @@
+.beer-info {
+    padding: 0 20px;
+    width: 100%;
+    max-width: 800px;
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+
+.beer-info-paper {
+    padding: 15px;
+}

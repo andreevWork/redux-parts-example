@@ -1,16 +1,22 @@
 import React, { PureComponent } from 'react';
 import { Actions } from '../../../../store/index';
-import {List} from "../../../common/list/List";
-import {BeerItem} from "../../../common/items/beerItem/BeerItem";
+import {BeerItem} from "../../../common/list_items/beerItem/BeerItem";
 import {LoadData} from "../../../hoc/loadData/LoadData";
 import './Beers.css';
+import {EmptyOrLoaderOrData} from "../../../common/emptyOrLoaderOrData/EmptyOrLoaderOrData";
+import {List} from "../../../common/list/List";
 
 class BeersComponent extends PureComponent {
     render() {
+        const {is_pending, data} = this.props.data;
+        const has_data = !!data && !!data.length;
+
         return <div className="beers-list">
-            <List list={this.props.data}>
-                {beer => <BeerItem beer={beer} />}
-            </List>
+            <EmptyOrLoaderOrData has_data={has_data} is_pending={is_pending}>
+                <List data={data}>
+                    {beer => <BeerItem beer={beer} />}
+                </List>
+            </EmptyOrLoaderOrData>
         </div>;
     }
 }
